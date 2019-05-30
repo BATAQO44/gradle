@@ -101,7 +101,7 @@ class HttpBuildCacheServiceIntegrationTest extends AbstractIntegrationSpec imple
         when:
         withBuildCache().run "clean"
         then:
-        nonSkippedTasks.contains ":clean"
+        executedAndNotSkipped ":clean"
     }
 
     def "cacheable task with cache disabled doesn't get cached"() {
@@ -116,7 +116,7 @@ class HttpBuildCacheServiceIntegrationTest extends AbstractIntegrationSpec imple
         withBuildCache().run "compileJava"
         then:
         // :compileJava is not cached, but :jar is still cached as its inputs haven't changed
-        nonSkippedTasks.contains ":compileJava"
+        executedAndNotSkipped ":compileJava"
     }
 
     def "non-cacheable task with cache enabled gets cached"() {
@@ -142,7 +142,7 @@ class HttpBuildCacheServiceIntegrationTest extends AbstractIntegrationSpec imple
         when:
         withBuildCache().run "jar"
         then:
-        nonSkippedTasks.contains ":customTask"
+        executedAndNotSkipped ":customTask"
 
         when:
         withBuildCache().run "clean"

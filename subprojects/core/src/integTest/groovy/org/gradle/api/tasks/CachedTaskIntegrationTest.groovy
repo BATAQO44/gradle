@@ -73,7 +73,7 @@ class CachedTaskIntegrationTest extends AbstractIntegrationSpec implements Direc
         when:
         withBuildCache().run "foo"
         then:
-        executedTasks == [":foo"]
+        result.assertTasksExecuted(":foo")
 
         when:
         withBuildCache().run "foo"

@@ -131,7 +131,7 @@ class JacocoPluginMultiVersionIntegrationTest extends JacocoMultiVersionIntegrat
         succeeds('jacocoTestReport')
 
         then:
-        executedTasks.contains(":jacocoTestReport")
+        executed(":jacocoTestReport")
         htmlReport().totalCoverage() == 100
     }
 
@@ -255,8 +255,8 @@ public class ThingTest {
         fails 'test', 'jacocoTestReport'
 
         then:
-        ':test' in nonSkippedTasks
-        ':jacocoTestReport' in executedTasks
+        executedAndNotSkipped(':test')
+        executed(':jacocoTestReport')
         failure.assertHasCause("Unable to read execution data file ${new File(testDirectory, execFileName)}")
     }
 

@@ -59,7 +59,7 @@ class IvyPublishDescriptorCustomizationIntegTest extends AbstractIvyPublishInteg
         succeeds 'publish'
 
         then:
-        ":jar" in executedTasks
+        executed(":jar")
 
         and:
         module.parsedIvy.revision == "2"

@@ -34,7 +34,7 @@ class TextResourceIntegrationTest extends AbstractIntegrationSpec {
         run("stringText")
 
         then:
-        executedTasks == [":stringText"]
+        result.assertTasksExecuted(":stringText")
         file("output.txt").text == "my config"
 
         when:
@@ -50,7 +50,7 @@ class TextResourceIntegrationTest extends AbstractIntegrationSpec {
         run("fileText")
 
         then:
-        executedTasks == [":fileText"]
+        result.assertTasksExecuted(":fileText")
         file("output.txt").text == "my config"
 
         when:
@@ -65,7 +65,7 @@ class TextResourceIntegrationTest extends AbstractIntegrationSpec {
         run("fileCollectionText")
 
         then:
-        executedTasks == [":generateConfigFile", ":fileCollectionText"]
+        result.assertTasksExecuted(":generateConfigFile", ":fileCollectionText")
         file("output.txt").text == "my config"
 
         when:
@@ -80,7 +80,7 @@ class TextResourceIntegrationTest extends AbstractIntegrationSpec {
         run("fileCollectionTextUsingTaskProvider")
 
         then:
-        executedTasks == [":generateConfigFile", ":fileCollectionTextUsingTaskProvider"]
+        result.assertTasksExecuted(":generateConfigFile", ":fileCollectionTextUsingTaskProvider")
         file("output.txt").text == "my config"
 
         when:
@@ -95,7 +95,7 @@ class TextResourceIntegrationTest extends AbstractIntegrationSpec {
         run("archiveEntryText")
 
         then:
-        executedTasks == [":generateConfigFile", ":generateConfigZip", ":archiveEntryText"]
+        result.assertTasksExecuted(":generateConfigFile", ":generateConfigZip", ":archiveEntryText")
         file("output.txt").text == "my config"
 
         when:
@@ -122,7 +122,7 @@ class TextResourceIntegrationTest extends AbstractIntegrationSpec {
         run("uriText")
 
         then:
-        executedTasks == [":uriText"]
+        result.assertTasksExecuted(":uriText")
         file("output.txt").text == "my config\n"
 
         when:

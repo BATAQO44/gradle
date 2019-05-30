@@ -1248,7 +1248,7 @@ class CopyTaskIntegrationSpec extends AbstractIntegrationSpec {
         when:
         run 'copy'
         then:
-        executedTasks == [":compileJava", ":processResources", ":classes", ":copy"]
+        result.assertTasksExecuted(":compileJava", ":processResources", ":classes", ":copy")
     }
 
     @Unroll

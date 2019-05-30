@@ -192,16 +192,20 @@ class CheckstylePluginVersionIntegrationTest extends MultiVersionIntegrationSpec
         goodCode()
 
         expect:
-        succeeds("checkstyleMain") && ":checkstyleMain" in nonSkippedTasks
+        succeeds("checkstyleMain")
+        executedAndNotSkipped(":checkstyleMain")
+
         executer.withArgument("-i")
-        succeeds("checkstyleMain") && ":checkstyleMain" in skippedTasks
+        succeeds("checkstyleMain")
+        skipped(":checkstyleMain")
 
         when:
         file("build/reports/checkstyle/main.xml").delete()
         file("build/reports/checkstyle/main.html").delete()
 
         then:
-        succeeds("checkstyleMain") && ":checkstyleMain" in nonSkippedTasks
+        succeeds("checkstyleMain")
+        executedAndNotSkipped(":checkstyleMain")
     }
 
     def "can configure reporting"() {
@@ -347,7 +351,7 @@ class CheckstylePluginVersionIntegrationTest extends MultiVersionIntegrationSpec
         succeeds('clean', 'check')
 
         then:
-        nonSkippedTasks.contains(':checkstyleMain')
+        executedAndNotSkipped(':checkstyleMain')
         result.hasErrorOutput("[ant:checkstyle] [WARN]") || result.hasErrorOutput("warning: Name 'class1' must match pattern")
     }
 
