@@ -25,7 +25,7 @@ abstract class AbstractTaskRelocationIntegrationTest extends AbstractIntegration
         succeeds taskName
         def originalResults = extractResults()
         then:
-        nonSkippedTasks.contains taskName
+        executedAndNotSkipped taskName
 
         when:
         succeeds taskName
@@ -43,7 +43,7 @@ abstract class AbstractTaskRelocationIntegrationTest extends AbstractIntegration
         succeeds taskName
         def movedResults = extractResults()
         then:
-        nonSkippedTasks.contains taskName
+        executedAndNotSkipped taskName
         assertResultsEqual originalResults, movedResults
     }
 

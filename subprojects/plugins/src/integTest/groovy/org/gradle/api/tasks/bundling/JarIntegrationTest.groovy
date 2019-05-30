@@ -657,7 +657,7 @@ class JarIntegrationTest extends AbstractIntegrationSpec {
         when:
         succeeds "jar"
         then:
-        nonSkippedTasks.contains ":compileJava"
+        executedAndNotSkipped ":compileJava"
         skippedTasks.contains ":jar"
     }
 

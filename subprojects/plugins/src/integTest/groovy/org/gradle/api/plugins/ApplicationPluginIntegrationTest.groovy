@@ -552,7 +552,7 @@ rootProject.name = 'sample'
         succeeds("startScripts")
 
         then:
-        nonSkippedTasks.contains(":startScripts")
+        executedAndNotSkipped(":startScripts")
 
         and:
         succeeds("startScripts")

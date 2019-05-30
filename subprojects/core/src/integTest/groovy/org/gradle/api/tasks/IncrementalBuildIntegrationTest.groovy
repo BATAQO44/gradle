@@ -1211,7 +1211,7 @@ task generate(type: TransformerTask) {
         succeeds 'myTask'
 
         then:
-        nonSkippedTasks.contains(':myTask')
+        executedAndNotSkipped(':myTask')
 
         when:
         succeeds('myTask')

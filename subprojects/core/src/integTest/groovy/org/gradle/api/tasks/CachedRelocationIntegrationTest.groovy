@@ -50,7 +50,7 @@ class CachedRelocationIntegrationTest extends AbstractIntegrationSpec implements
         withBuildCache().run "jar", "customTask"
 
         then:
-        nonSkippedTasks.containsAll ":compileJava", ":jar", ":customTask"
+        executedAndNotSkipped ":compileJava", ":jar", ":customTask"
 
         when:
         executer.usingProjectDirectory(originalLocation)
@@ -59,7 +59,7 @@ class CachedRelocationIntegrationTest extends AbstractIntegrationSpec implements
 
         then:
         skippedTasks.containsAll ":compileJava"
-        nonSkippedTasks.contains ":customTask"
+        executedAndNotSkipped ":customTask"
 
         when:
         executer.usingProjectDirectory(originalLocation)

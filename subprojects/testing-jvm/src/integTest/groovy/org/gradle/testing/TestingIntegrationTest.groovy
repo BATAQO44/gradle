@@ -395,7 +395,7 @@ class TestingIntegrationTest extends JUnitMultiVersionIntegrationSpec {
         when:
         run "test"
         then:
-        nonSkippedTasks.contains ":test"
+        executedAndNotSkipped ":test"
         output.contains("FirstTest > test PASSED")
         output.contains("SecondTest > test PASSED")
 
@@ -415,7 +415,7 @@ class TestingIntegrationTest extends JUnitMultiVersionIntegrationSpec {
         then:
         run "test"
         then:
-        nonSkippedTasks.contains ":test"
+        executedAndNotSkipped ":test"
         output.contains("FirstTest > test PASSED")
         !output.contains("SecondTest > test PASSED")
     }

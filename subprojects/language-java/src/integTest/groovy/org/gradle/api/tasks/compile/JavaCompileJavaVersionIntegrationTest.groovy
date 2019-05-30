@@ -57,7 +57,7 @@ class JavaCompileJavaVersionIntegrationTest extends AbstractIntegrationSpec {
         executer.withJavaHome AvailableJavaHomes.getJdk(VERSION_1_8).javaHome
         succeeds "compileJava"
         then:
-        nonSkippedTasks.contains ":compileJava"
+        executedAndNotSkipped ":compileJava"
 
         when:
         executer.withJavaHome AvailableJavaHomes.getJdk(VERSION_1_8).javaHome
@@ -69,7 +69,7 @@ class JavaCompileJavaVersionIntegrationTest extends AbstractIntegrationSpec {
         executer.withJavaHome AvailableJavaHomes.getJdk(VERSION_1_9).javaHome
         succeeds "compileJava", "--info"
         then:
-        nonSkippedTasks.contains ":compileJava"
+        executedAndNotSkipped ":compileJava"
         output.contains "Value of input property 'toolChain.version' has changed for task ':compileJava'"
     }
 
@@ -91,7 +91,7 @@ class JavaCompileJavaVersionIntegrationTest extends AbstractIntegrationSpec {
         executer.withJavaHome jdk9.javaHome
         succeeds "compileJava"
         then:
-        nonSkippedTasks.contains ":compileJava"
+        executedAndNotSkipped ":compileJava"
 
         when:
         executer.withJavaHome jdk8.javaHome
@@ -104,7 +104,7 @@ class JavaCompileJavaVersionIntegrationTest extends AbstractIntegrationSpec {
         buildFile.text = forkedJavaCompilation(jdk9)
         succeeds "compileJava", "--info"
         then:
-        nonSkippedTasks.contains ":compileJava"
+        executedAndNotSkipped ":compileJava"
         output.contains "Value of input property 'toolChain.version' has changed for task ':compileJava'"
     }
 

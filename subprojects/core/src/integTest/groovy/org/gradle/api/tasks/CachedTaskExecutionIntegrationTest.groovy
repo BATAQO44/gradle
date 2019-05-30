@@ -111,7 +111,7 @@ class CachedTaskExecutionIntegrationTest extends AbstractIntegrationSpec impleme
         def updatedCacheContents = listCacheFiles()
         def updatedModificationTimes = updatedCacheContents*.lastModified()
         then:
-        nonSkippedTasks.containsAll ":compileJava", ":jar"
+        executedAndNotSkipped ":compileJava", ":jar"
         updatedCacheContents == originalCacheContents
         originalModificationTimes.size().times { i ->
             assert originalModificationTimes[i] < updatedModificationTimes[i]
@@ -141,7 +141,7 @@ class CachedTaskExecutionIntegrationTest extends AbstractIntegrationSpec impleme
         when:
         withBuildCache().run "jar"
         then:
-        nonSkippedTasks.containsAll ":compileJava", ":jar"
+        executedAndNotSkipped ":compileJava", ":jar"
     }
 
     def "outputs are correctly loaded from cache"() {
@@ -169,7 +169,7 @@ class CachedTaskExecutionIntegrationTest extends AbstractIntegrationSpec impleme
         when:
         withBuildCache().run "assemble"
         then:
-        nonSkippedTasks.contains ":compileJava"
+        executedAndNotSkipped ":compileJava"
     }
 
     def "tasks get cached when source code changes back to previous state"() {
@@ -195,7 +195,7 @@ class CachedTaskExecutionIntegrationTest extends AbstractIntegrationSpec impleme
         when:
         withBuildCache().run "clean"
         then:
-        nonSkippedTasks.contains ":clean"
+        executedAndNotSkipped ":clean"
     }
 
     def "task gets loaded from cache when it is executed from a different directory"() {
@@ -287,7 +287,7 @@ class CachedTaskExecutionIntegrationTest extends AbstractIntegrationSpec impleme
         withBuildCache().run 'clean', 'run'
 
         then:
-        nonSkippedTasks.contains ':compileJava'
+        executedAndNotSkipped ':compileJava'
 
         when:
         withBuildCache().run 'clean', 'run'
@@ -333,7 +333,7 @@ class CachedTaskExecutionIntegrationTest extends AbstractIntegrationSpec impleme
         withBuildCache().run taskPath
 
         then:
-        nonSkippedTasks.contains taskPath
+        executedAndNotSkipped taskPath
         outputFile.text == "input text"
 
         when:
@@ -349,7 +349,7 @@ class CachedTaskExecutionIntegrationTest extends AbstractIntegrationSpec impleme
         succeeds taskPath
 
         then:
-        nonSkippedTasks.contains taskPath
+        executedAndNotSkipped taskPath
         outputFile.text == "input text"
 
         when:
@@ -358,7 +358,7 @@ class CachedTaskExecutionIntegrationTest extends AbstractIntegrationSpec impleme
 
         then:
         // If the output wouldn't have been captured then the task would be up to date
-        nonSkippedTasks.contains taskPath
+        executedAndNotSkipped taskPath
         outputFile.text == "input text"
     }
 
