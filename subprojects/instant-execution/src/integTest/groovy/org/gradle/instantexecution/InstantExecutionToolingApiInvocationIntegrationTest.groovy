@@ -41,14 +41,16 @@ class InstantExecutionToolingApiInvocationIntegrationTest extends AbstractInstan
     ExecutionResult runWithInstantExecutionViaToolingApi(String... tasks) {
         def output = new ByteArrayOutputStream()
         def error = new ByteArrayOutputStream()
+        def context = new IntegrationTestBuildContext()
         def connector = GradleConnector
             .newConnector()
             .forProjectDirectory(testDirectory)
+            .useGradleUserHomeDir(context.gradleUserHomeDir)
             .searchUpwards(false)
         if (GradleContextualExecuter.embedded) {
             connector.embedded(true).useClasspathDistribution()
         } else {
-            connector.embedded(false).useInstallation(new IntegrationTestBuildContext().gradleHomeDir)
+            connector.embedded(false).useInstallation(context.gradleHomeDir)
         }
         def connection = connector.connect()
         try {
