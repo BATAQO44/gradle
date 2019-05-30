@@ -184,9 +184,9 @@ public class ThingTest {
         succeeds 'mergedReport'
 
         then:
-        ":jacocoMerge" in nonSkippedTasks
-        ":test" in nonSkippedTasks
-        ":otherTests" in nonSkippedTasks
+        executedAndNotSkipped(":jacocoMerge")
+        executedAndNotSkipped(":test")
+        executedAndNotSkipped(":otherTests")
         file("build/jacoco/jacocoMerge.exec").exists()
         htmlReport("build/reports/jacoco/mergedReport/html").totalCoverage() == 71
     }

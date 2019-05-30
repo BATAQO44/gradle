@@ -97,7 +97,7 @@ class OsgiPluginIntegrationSpec extends AbstractIntegrationSpec {
         run "jar"
 
         then:
-        ":jar" in nonSkippedTasks
+        executedAndNotSkipped(":jar")
 
         when:
         sleep sleepTime
@@ -111,7 +111,7 @@ class OsgiPluginIntegrationSpec extends AbstractIntegrationSpec {
         run "clean", "jar"
 
         then:
-        ":jar" in nonSkippedTasks
+        executedAndNotSkipped(":jar")
     }
 
     @Issue('GRADLE-3374')

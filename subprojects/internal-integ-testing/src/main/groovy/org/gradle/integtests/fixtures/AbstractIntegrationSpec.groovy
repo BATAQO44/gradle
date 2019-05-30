@@ -273,6 +273,11 @@ class AbstractIntegrationSpec extends Specification {
         }
     }
 
+    protected void allSkipped() {
+        assert !executedTasks.empty
+        assert nonSkippedTasks.empty
+    }
+
     protected void skipped(String... tasks) {
         tasks.each {
             result.assertTaskSkipped(it)

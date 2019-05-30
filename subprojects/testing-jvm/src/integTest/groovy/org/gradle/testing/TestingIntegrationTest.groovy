@@ -61,7 +61,7 @@ class TestingIntegrationTest extends JUnitMultiVersionIntegrationSpec {
         run "test"
 
         then:
-        ":test" in nonSkippedTasks
+        executedAndNotSkipped(":test")
     }
 
     def "fails cleanly even if an exception is thrown that doesn't serialize cleanly"() {

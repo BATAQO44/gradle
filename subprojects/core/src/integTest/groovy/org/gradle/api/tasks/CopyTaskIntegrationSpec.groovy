@@ -999,7 +999,7 @@ class CopyTaskIntegrationSpec extends AbstractIntegrationSpec {
         succeeds "copyTask"
 
         then:
-        ":copyTask" in nonSkippedTasks
+        executedAndNotSkipped(":copyTask")
         def destinationDir = file("out")
         destinationDir.assertHasDescendants("a.txt", "b.txt")
         destinationDir.listFiles().findAll { it.directory }*.name.toSet() == ["dirA"].toSet()
@@ -1032,7 +1032,7 @@ class CopyTaskIntegrationSpec extends AbstractIntegrationSpec {
         succeeds "copyTask"
 
         then:
-        ":copyTask" in nonSkippedTasks
+        executedAndNotSkipped(":copyTask")
 
         def destinationDir = file("out")
         destinationDir.assertHasDescendants("a.txt", "b.txt")

@@ -211,7 +211,7 @@ public class SubClassTests extends SuperClassTests {
 
         then:
         ":otherTests" in skippedTasks
-        ":test" in nonSkippedTasks
+        executedAndNotSkipped(":test")
         new HtmlTestExecutionResult(testDirectory, "build/reports/tr").assertTestClassesExecuted("Thing")
     }
 
@@ -272,7 +272,7 @@ public class SubClassTests extends SuperClassTests {
         run "test"
 
         then:
-        ":test" in nonSkippedTasks
+        executedAndNotSkipped(":test")
         file(reportsDir).exists()
 
         when:
@@ -287,7 +287,7 @@ public class SubClassTests extends SuperClassTests {
         run "test"
 
         then:
-        ":test" in nonSkippedTasks
+        executedAndNotSkipped(":test")
         file(reportsDir).exists()
 
         where:
@@ -313,7 +313,7 @@ public class SubClassTests extends SuperClassTests {
         fails "test"
 
         then:
-        ":test" in nonSkippedTasks
+        executedAndNotSkipped(":test")
         failure.assertHasCause("There were failing tests. See the report at: ")
 
         when:
@@ -321,7 +321,7 @@ public class SubClassTests extends SuperClassTests {
         fails "test"
 
         then:
-        ":test" in nonSkippedTasks
+        executedAndNotSkipped(":test")
         failure.assertHasCause("There were failing tests. See the results at: ")
 
         when:
@@ -329,7 +329,7 @@ public class SubClassTests extends SuperClassTests {
         fails "test"
 
         then:
-        ":test" in nonSkippedTasks
+        executedAndNotSkipped(":test")
         failure.assertHasCause("There were failing tests")
         failure.assertHasNoCause("See the")
     }
@@ -345,14 +345,14 @@ public class SubClassTests extends SuperClassTests {
         succeeds "test"
 
         then:
-        ":test" in nonSkippedTasks
+        executedAndNotSkipped(":test")
 
         when:
         buildFile << "\ntest.reports.junitXml.outputPerTestCase = true\n"
         succeeds "test"
 
         then:
-        ":test" in nonSkippedTasks
+        executedAndNotSkipped(":test")
     }
 
     def "outputs over lifecycle"() {

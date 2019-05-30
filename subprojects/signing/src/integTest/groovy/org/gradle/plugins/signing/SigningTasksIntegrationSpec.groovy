@@ -44,7 +44,7 @@ class SigningTasksIntegrationSpec extends SigningIntegrationSpec {
         run "signJar"
 
         then:
-        ":signJar" in nonSkippedTasks
+        executedAndNotSkipped(":signJar")
 
         and:
         file("build", "libs", "sign-1.0.jar.asc").text
@@ -103,7 +103,7 @@ class SigningTasksIntegrationSpec extends SigningIntegrationSpec {
         run "signJar"
 
         then:
-        ":signJar" in nonSkippedTasks
+        executedAndNotSkipped(":signJar")
 
         when:
         def newSignMethod = originalSignMethod == GPG_CMD ? OPEN_GPG : GPG_CMD
@@ -119,7 +119,7 @@ class SigningTasksIntegrationSpec extends SigningIntegrationSpec {
         run "signJar"
 
         then:
-        ":signJar" in nonSkippedTasks
+        executedAndNotSkipped(":signJar")
 
         when:
         run "signJar"
@@ -142,7 +142,7 @@ class SigningTasksIntegrationSpec extends SigningIntegrationSpec {
         run "signJar"
 
         then:
-        ":signJar" in nonSkippedTasks
+        executedAndNotSkipped(":signJar")
 
         when:
         buildFile << """
@@ -153,7 +153,7 @@ class SigningTasksIntegrationSpec extends SigningIntegrationSpec {
         run "signJar"
 
         then:
-        ":signJar" in nonSkippedTasks
+        executedAndNotSkipped(":signJar")
 
         when:
         run "signJar"
@@ -180,7 +180,7 @@ class SigningTasksIntegrationSpec extends SigningIntegrationSpec {
         run "signCustomFile"
 
         then:
-        ":signCustomFile" in nonSkippedTasks
+        executedAndNotSkipped(":signCustomFile")
         file("input.txt.asc").exists()
 
         when:
@@ -188,7 +188,7 @@ class SigningTasksIntegrationSpec extends SigningIntegrationSpec {
         run "signCustomFile"
 
         then:
-        ":signCustomFile" in nonSkippedTasks
+        executedAndNotSkipped(":signCustomFile")
 
         when:
         run "signCustomFile"
@@ -214,7 +214,7 @@ class SigningTasksIntegrationSpec extends SigningIntegrationSpec {
         run "signCustomFile"
 
         then:
-        ":signCustomFile" in nonSkippedTasks
+        executedAndNotSkipped(":signCustomFile")
         def outputFile = file("input.txt.asc")
         outputFile.exists()
 
@@ -223,7 +223,7 @@ class SigningTasksIntegrationSpec extends SigningIntegrationSpec {
         run "signCustomFile"
 
         then:
-        ":signCustomFile" in nonSkippedTasks
+        executedAndNotSkipped(":signCustomFile")
 
         when:
         run "signCustomFile"
@@ -254,7 +254,7 @@ class SigningTasksIntegrationSpec extends SigningIntegrationSpec {
         run "signCustomFiles"
 
         then:
-        ":signCustomFiles" in nonSkippedTasks
+        executedAndNotSkipped(":signCustomFiles")
         file("input1.txt.asc").exists()
         file("input2.txt.asc").exists()
 
@@ -328,7 +328,7 @@ class SigningTasksIntegrationSpec extends SigningIntegrationSpec {
         run "signJar"
 
         then:
-        ":signJar" in nonSkippedTasks
+        executedAndNotSkipped(":signJar")
 
         and:
         file("build", "libs", "changed-1.0-custom.jar.asc").text
@@ -350,7 +350,7 @@ class SigningTasksIntegrationSpec extends SigningIntegrationSpec {
         run "signJar"
 
         then:
-        ":signJar" in nonSkippedTasks
+        executedAndNotSkipped(":signJar")
 
         and:
         file("build", "libs", "sign-1.0.jar.asc").text
