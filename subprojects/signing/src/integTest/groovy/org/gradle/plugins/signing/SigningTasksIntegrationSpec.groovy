@@ -53,7 +53,7 @@ class SigningTasksIntegrationSpec extends SigningIntegrationSpec {
         run "signJar"
 
         then:
-        ":signJar" in skippedTasks
+        skipped(":signJar")
     }
 
     @IgnoreIf({GradleContextualExecuter.parallel})
@@ -84,7 +84,7 @@ class SigningTasksIntegrationSpec extends SigningIntegrationSpec {
         run "signJar", "signJavadocJar", "signSourcesJar"
 
         then:
-        [":signJar", ":signJavadocJar", ":signSourcesJar"].every { it in skippedTasks }
+        skipped(":signJar", ":signJavadocJar", ":signSourcesJar")
     }
 
     @Requires(adhoc = { GpgCmdFixture.getAvailableGpg() != null })
@@ -125,7 +125,7 @@ class SigningTasksIntegrationSpec extends SigningIntegrationSpec {
         run "signJar"
 
         then:
-        ":signJar" in skippedTasks
+        skipped(":signJar")
     }
 
     def "out-of-date when signatureType changes"() {
@@ -159,7 +159,7 @@ class SigningTasksIntegrationSpec extends SigningIntegrationSpec {
         run "signJar"
 
         then:
-        ":signJar" in skippedTasks
+        skipped(":signJar")
     }
 
     def "out-of-date when input file changes"() {
@@ -194,7 +194,7 @@ class SigningTasksIntegrationSpec extends SigningIntegrationSpec {
         run "signCustomFile"
 
         then:
-        ":signCustomFile" in skippedTasks
+        skipped(":signCustomFile")
     }
 
     def "out-of-date when output file is deleted"() {
@@ -229,7 +229,7 @@ class SigningTasksIntegrationSpec extends SigningIntegrationSpec {
         run "signCustomFile"
 
         then:
-        ":signCustomFile" in skippedTasks
+        skipped(":signCustomFile")
     }
 
     def "up-to-date when order of signed files changes"() {
@@ -263,7 +263,7 @@ class SigningTasksIntegrationSpec extends SigningIntegrationSpec {
         run "signCustomFiles"
 
         then:
-        ":signCustomFiles" in skippedTasks
+        skipped(":signCustomFiles")
     }
 
     @Unroll

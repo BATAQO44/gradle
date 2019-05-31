@@ -121,7 +121,7 @@ class JacocoPluginMultiVersionIntegrationTest extends JacocoMultiVersionIntegrat
         succeeds('jacocoTestReport')
 
         then:
-        skippedTasks.contains(":jacocoTestReport")
+        skipped(":jacocoTestReport")
         !file(REPORT_HTML_DEFAULT_PATH).exists()
 
         when:

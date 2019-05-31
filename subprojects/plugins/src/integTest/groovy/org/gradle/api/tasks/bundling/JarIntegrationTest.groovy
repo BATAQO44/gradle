@@ -658,7 +658,7 @@ class JarIntegrationTest extends AbstractIntegrationSpec {
         succeeds "jar"
         then:
         executedAndNotSkipped ":compileJava"
-        skippedTasks.contains ":jar"
+        skipped ":jar"
     }
 
     def "cannot create a JAR without destination dir"() {

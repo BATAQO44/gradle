@@ -104,7 +104,7 @@ class OsgiPluginIntegrationSpec extends AbstractIntegrationSpec {
         run "jar"
 
         then:
-        ":jar" in skippedTasks
+        skipped(":jar")
 
         when:
         sleep sleepTime

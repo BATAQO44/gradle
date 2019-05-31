@@ -106,7 +106,7 @@ class JsHintPluginIntegrationTest extends WellBehavedPluginTest {
         run "jsHint"
 
         then:
-        ":jsHint" in skippedTasks
+        skipped(":jsHint")
     }
 
 }

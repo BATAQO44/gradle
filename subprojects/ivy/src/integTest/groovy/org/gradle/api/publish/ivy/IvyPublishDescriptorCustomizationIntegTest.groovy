@@ -97,7 +97,7 @@ class IvyPublishDescriptorCustomizationIntegTest extends AbstractIvyPublishInteg
         succeeds 'publish'
 
         then:
-        ":jar" in skippedTasks
+        skipped(":jar")
 
         and:
         with (module.parsedIvy) {

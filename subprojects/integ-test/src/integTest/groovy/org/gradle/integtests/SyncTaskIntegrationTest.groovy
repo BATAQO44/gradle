@@ -162,14 +162,14 @@ class SyncTaskIntegrationTest extends AbstractIntegrationSpec {
         run 'sync'
 
         then:
-        skippedTasks == [':sync'] as Set
+        skipped ':sync'
 
         when:
         file('dest/not-preserved.txt').text = 'Changed!'
         run 'sync'
 
         then:
-        noneSkipped()
+        executedAndNotSkipped ':sync'
     }
 
     @NotYetImplemented

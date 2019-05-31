@@ -540,8 +540,8 @@ class SigningPublicationsIntegrationSpec extends SigningIntegrationSpec {
         succeeds "publish"
 
         then:
-        ":signIvyPublication" in skippedTasks
-        ":signMavenPublication" in skippedTasks
+        skipped(":signIvyPublication")
+        skipped(":signMavenPublication")
         executedAndNotSkipped(":publishIvyPublicationToIvyRepository")
         executedAndNotSkipped(":publishMavenPublicationToMavenRepository")
 

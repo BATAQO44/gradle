@@ -1217,7 +1217,7 @@ task generate(type: TransformerTask) {
         succeeds('myTask')
 
         then:
-        skippedTasks.contains(':myTask')
+        skipped(':myTask')
     }
 
     def "task with no actions is skipped even if it has inputs"() {

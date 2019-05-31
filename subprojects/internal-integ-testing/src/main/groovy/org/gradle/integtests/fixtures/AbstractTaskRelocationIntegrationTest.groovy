@@ -30,13 +30,13 @@ abstract class AbstractTaskRelocationIntegrationTest extends AbstractIntegration
         when:
         succeeds taskName
         then:
-        skippedTasks.contains taskName
+        skipped taskName
 
         when:
         moveFilesAround()
         succeeds taskName
         then:
-        skippedTasks.contains(taskName)
+        skipped(taskName)
 
         when:
         removeResults()

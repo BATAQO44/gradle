@@ -157,6 +157,6 @@ class CachedImplementationIntegrationTest extends AbstractIntegrationSpec {
         executer.withBuildCacheEnabled()
         succeeds "compileJava"
         then:
-        skippedTasks.contains ":compileJava"
+        skipped ":compileJava"
     }
 }

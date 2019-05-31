@@ -56,7 +56,7 @@ class NoSigningCredentialsIntegrationSpec extends SigningIntegrationSpec {
         succeeds ":uploadArchives"
 
         and:
-        ":signArchives" in skippedTasks
+        skipped(":signArchives")
 
         and:
         jarUploaded()
@@ -99,7 +99,7 @@ class NoSigningCredentialsIntegrationSpec extends SigningIntegrationSpec {
         succeeds ":uploadArchives"
 
         and:
-        ":signArchives" in skippedTasks
+        skipped(":signArchives")
 
         and:
         jarUploaded()

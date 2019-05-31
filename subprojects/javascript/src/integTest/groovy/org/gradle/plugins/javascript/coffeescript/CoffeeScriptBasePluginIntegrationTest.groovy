@@ -88,6 +88,6 @@ class CoffeeScriptBasePluginIntegrationTest extends WellBehavedPluginTest {
         run "compile"
 
         then:
-        ":compile" in skippedTasks
+        skipped(":compile")
     }
 }

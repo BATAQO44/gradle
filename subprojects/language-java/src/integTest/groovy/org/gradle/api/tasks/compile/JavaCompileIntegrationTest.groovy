@@ -95,7 +95,7 @@ class JavaCompileIntegrationTest extends AbstractPluginIntegrationTest {
         when:
         run "compile"
         then:
-        skippedTasks.contains ":compile"
+        skipped ":compile"
 
         when:
         buildFile.text = buildScriptWithClasspath("lib2.jar", "lib1.jar")
@@ -119,7 +119,7 @@ class JavaCompileIntegrationTest extends AbstractPluginIntegrationTest {
         when:
         run "compile"
         then:
-        skippedTasks.contains ":compile"
+        skipped ":compile"
 
         when:
         file("lib1.jar").renameTo(file("lib1-renamed.jar"))
@@ -127,7 +127,7 @@ class JavaCompileIntegrationTest extends AbstractPluginIntegrationTest {
 
         run "compile"
         then:
-        skippedTasks.contains ":compile"
+        skipped ":compile"
     }
 
     def buildScriptWithClasspath(String... dependencies) {

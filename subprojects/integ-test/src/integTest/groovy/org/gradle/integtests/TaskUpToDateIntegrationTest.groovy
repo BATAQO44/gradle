@@ -51,7 +51,7 @@ class TaskUpToDateIntegrationTest extends AbstractIntegrationSpec {
         when:
         run "myTask"
         then:
-        skippedTasks.contains ":myTask"
+        skipped ":myTask"
 
         when:
         run "myTask", "-Preverse"

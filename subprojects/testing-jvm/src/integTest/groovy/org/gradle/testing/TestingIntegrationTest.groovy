@@ -402,7 +402,7 @@ class TestingIntegrationTest extends JUnitMultiVersionIntegrationSpec {
         when:
         run "test"
         then:
-        skippedTasks.contains ":test"
+        skipped ":test"
 
         when:
         buildFile << """

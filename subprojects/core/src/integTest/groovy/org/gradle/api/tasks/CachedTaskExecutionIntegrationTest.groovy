@@ -84,7 +84,7 @@ class CachedTaskExecutionIntegrationTest extends AbstractIntegrationSpec impleme
         when:
         withBuildCache().run "jar"
         then:
-        skippedTasks.containsAll ":compileJava"
+        skipped ":compileJava"
     }
 
     @Unroll
@@ -223,7 +223,7 @@ class CachedTaskExecutionIntegrationTest extends AbstractIntegrationSpec impleme
         when:
         withBuildCache().run "compileJava"
         then:
-        skippedTasks.containsAll ":compileJava"
+        skipped ":compileJava"
         javaClassFile("Hello.class").exists()
     }
 
@@ -250,7 +250,7 @@ class CachedTaskExecutionIntegrationTest extends AbstractIntegrationSpec impleme
         when:
         withBuildCache().run "compileJava"
         then:
-        skippedTasks.containsAll ":compileJava"
+        skipped ":compileJava"
         javaClassFile("Hello.class").exists()
     }
 
@@ -293,13 +293,13 @@ class CachedTaskExecutionIntegrationTest extends AbstractIntegrationSpec impleme
         withBuildCache().run 'clean', 'run'
 
         then:
-        skippedTasks.contains ':compileJava'
+        skipped ':compileJava'
 
         when:
         withBuildCache().run 'clean', 'run'
 
         then:
-        skippedTasks.contains ':compileJava'
+        skipped ':compileJava'
     }
 
     def "outputs loaded from the cache are snapshotted as outputs"() {
@@ -341,7 +341,7 @@ class CachedTaskExecutionIntegrationTest extends AbstractIntegrationSpec impleme
         withBuildCache().run taskPath
 
         then:
-        skippedTasks.contains taskPath
+        skipped taskPath
         outputFile.text == "input text"
 
         when:

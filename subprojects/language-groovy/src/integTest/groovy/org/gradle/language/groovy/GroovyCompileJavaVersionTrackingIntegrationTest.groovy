@@ -59,7 +59,7 @@ class GroovyCompileJavaVersionTrackingIntegrationTest extends AbstractIntegratio
         executer.withJavaHome jdk9.javaHome
         succeeds ":compileGroovy"
         then:
-        skippedTasks.contains ":compileGroovy"
+        skipped ":compileGroovy"
 
         when:
         executer.withJavaHome jdk8.javaHome

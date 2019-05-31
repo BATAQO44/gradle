@@ -36,13 +36,13 @@ class ConfigureRuntimeClasspathNormalizationIntegrationTest extends AbstractInte
         when:
         succeeds project.customTask
         then:
-        skippedTasks.contains(project.customTask)
+        skipped(project.customTask)
 
         when:
         ignoredResource.changeContents()
         succeeds project.customTask
         then:
-        skippedTasks.contains(project.customTask)
+        skipped(project.customTask)
 
         when:
         notIgnoredResource.changeContents()
@@ -55,14 +55,14 @@ class ConfigureRuntimeClasspathNormalizationIntegrationTest extends AbstractInte
         succeeds project.customTask
 
         then:
-        skippedTasks.contains(project.customTask)
+        skipped(project.customTask)
 
         when:
         ignoredResource.add()
         succeeds project.customTask
 
         then:
-        skippedTasks.contains(project.customTask)
+        skipped(project.customTask)
 
         where:
         tree          | ignoredResourceName          | notIgnoredResourceName          | useRuntimeApi
@@ -90,7 +90,7 @@ class ConfigureRuntimeClasspathNormalizationIntegrationTest extends AbstractInte
         projectWithoutIgnores.ignoredResourceInJar.changeContents()
         succeeds(*allProjects*.customTask)
         then:
-        skippedTasks.contains(projectWithIgnores.customTask)
+        skipped(projectWithIgnores.customTask)
         executedAndNotSkipped(projectWithoutIgnores.customTask)
 
         where:

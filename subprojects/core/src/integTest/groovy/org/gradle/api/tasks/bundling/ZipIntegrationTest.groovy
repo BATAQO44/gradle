@@ -213,7 +213,7 @@ class ZipIntegrationTest extends AbstractIntegrationSpec {
         when:
         succeeds "zip"
         then:
-        skippedTasks as List == [":zip"]
+        skipped ":zip"
 
         buildFile.delete()
         buildFile << """
@@ -231,7 +231,7 @@ class ZipIntegrationTest extends AbstractIntegrationSpec {
         when:
         succeeds "zip", "--info"
         then:
-        noneSkipped()
+        executedAndNotSkipped(":zip")
         output.contains "Value of input property 'rootSpec\$1\$1.destPath' has changed for task ':zip'"
         output.contains "Value of input property 'rootSpec\$1\$1\$1.destPath' has changed for task ':zip'"
     }

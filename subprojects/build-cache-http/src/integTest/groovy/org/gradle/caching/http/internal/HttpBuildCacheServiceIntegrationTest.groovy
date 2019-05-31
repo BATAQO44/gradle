@@ -64,7 +64,7 @@ class HttpBuildCacheServiceIntegrationTest extends AbstractIntegrationSpec imple
         when:
         withBuildCache().run "jar"
         then:
-        skippedTasks.containsAll ":compileJava"
+        skipped ":compileJava"
     }
 
     def "outputs are correctly loaded from cache"() {
@@ -148,7 +148,7 @@ class HttpBuildCacheServiceIntegrationTest extends AbstractIntegrationSpec imple
         withBuildCache().run "clean"
         withBuildCache().run "jar"
         then:
-        skippedTasks.contains ":customTask"
+        skipped ":customTask"
     }
 
     def "credentials can be specified via DSL"() {
@@ -174,7 +174,7 @@ class HttpBuildCacheServiceIntegrationTest extends AbstractIntegrationSpec imple
         when:
         withBuildCache().run "jar"
         then:
-        skippedTasks.containsAll ":compileJava"
+        skipped ":compileJava"
         httpBuildCacheServer.authenticationAttempts == ['Basic'] as Set
     }
 
@@ -196,7 +196,7 @@ class HttpBuildCacheServiceIntegrationTest extends AbstractIntegrationSpec imple
         httpBuildCacheServer.withBasicAuth("user", "pass%:-0]#")
         withBuildCache().run "jar"
         then:
-        skippedTasks.containsAll ":compileJava"
+        skipped ":compileJava"
         httpBuildCacheServer.authenticationAttempts == ['Basic'] as Set
     }
 

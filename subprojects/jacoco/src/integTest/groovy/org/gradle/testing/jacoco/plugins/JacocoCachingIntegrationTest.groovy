@@ -58,7 +58,7 @@ class JacocoCachingIntegrationTest extends AbstractIntegrationSpec implements Di
         when:
         withBuildCache().run "jacocoTestReport"
         then:
-        skippedTasks.containsAll ":test", ":jacocoTestReport"
+        skipped ":test", ":jacocoTestReport"
         reportFile.assertContentsHaveNotChangedSince(snapshot)
     }
 
@@ -105,7 +105,7 @@ class JacocoCachingIntegrationTest extends AbstractIntegrationSpec implements Di
         executer.requireOwnGradleUserHomeDir()
         withBuildCache().run "jacocoTestReport"
         then:
-        skippedTasks.containsAll ":test", ":jacocoTestReport"
+        skipped ":test", ":jacocoTestReport"
         reportFile.assertContentsHaveNotChangedSince(snapshot)
     }
 
@@ -131,6 +131,6 @@ class JacocoCachingIntegrationTest extends AbstractIntegrationSpec implements Di
         executer.requireOwnGradleUserHomeDir()
         withBuildCache().run "test"
         then:
-        skippedTasks.containsAll ":test"
+        skipped ":test"
     }
 }

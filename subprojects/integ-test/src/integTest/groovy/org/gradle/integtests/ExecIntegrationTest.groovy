@@ -129,7 +129,7 @@ class ExecIntegrationTest extends AbstractIntegrationSpec {
         run "run"
 
         then:
-        ":run" in skippedTasks
+        skipped(":run")
 
         when:
         file('build/out.txt').delete()

@@ -273,7 +273,7 @@ class CheckstylePluginVersionIntegrationTest extends MultiVersionIntegrationSpec
         when:
         succeeds "checkstyleMain"
         then:
-        result.skippedTasks.contains(":checkstyleMain")
+        result.skipped(":checkstyleMain")
 
         when:
         file("config/checkstyle/suppressions.xml") << "<!-- This is a change -->"

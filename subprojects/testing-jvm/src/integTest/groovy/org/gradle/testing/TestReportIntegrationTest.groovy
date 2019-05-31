@@ -210,7 +210,7 @@ public class SubClassTests extends SuperClassTests {
         succeeds "testReport"
 
         then:
-        ":otherTests" in skippedTasks
+        skipped(":otherTests")
         executedAndNotSkipped(":test")
         new HtmlTestExecutionResult(testDirectory, "build/reports/tr").assertTestClassesExecuted("Thing")
     }
@@ -253,8 +253,8 @@ public class SubClassTests extends SuperClassTests {
         succeeds "testReport"
 
         then:
-        ":test" in skippedTasks
-        ":testReport" in skippedTasks
+        skipped(":test")
+        skipped(":testReport")
     }
 
     @Unroll
@@ -279,7 +279,7 @@ public class SubClassTests extends SuperClassTests {
         run "test"
 
         then:
-        ":test" in skippedTasks
+        skipped(":test")
         file(reportsDir).exists()
 
         when:
