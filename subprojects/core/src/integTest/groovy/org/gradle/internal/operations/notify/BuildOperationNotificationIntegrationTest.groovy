@@ -220,7 +220,7 @@ class BuildOperationNotificationIntegrationTest extends AbstractIntegrationSpec 
         succeeds "t", "-I", initScript.absolutePath
 
         then:
-        executed(":o")
+        executed(":parent:o")
 
         notifications.started(ConfigureProjectBuildOperationType.Details, [buildPath: ":", projectPath: ":"])
         notifications.started(ConfigureProjectBuildOperationType.Details) {

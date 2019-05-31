@@ -66,7 +66,7 @@ class JDependPluginIntegrationTest extends WellBehavedPluginTest {
         executedAndNotSkipped(":jdependMain")
 
         succeeds(":jdependMain")
-        executedAndNotSkipped(":jdependMain")
+        skipped(":jdependMain")
 
         when:
         file("build/reports/jdepend/main.xml").delete()
