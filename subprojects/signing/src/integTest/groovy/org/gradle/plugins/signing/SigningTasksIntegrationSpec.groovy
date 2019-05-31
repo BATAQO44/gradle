@@ -73,7 +73,7 @@ class SigningTasksIntegrationSpec extends SigningIntegrationSpec {
         run "signJar", "signJavadocJar", "signSourcesJar"
 
         then:
-        [":signJar", ":signJavadocJar", ":signSourcesJar"].every { it in nonSkippedTasks }
+        executedAndNotSkipped(":signJar", ":signJavadocJar", ":signSourcesJar")
 
         and:
         file("build", "libs", "sign-1.0.jar.asc").text

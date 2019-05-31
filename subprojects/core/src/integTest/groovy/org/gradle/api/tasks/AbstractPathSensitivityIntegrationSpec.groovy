@@ -180,7 +180,7 @@ abstract class AbstractPathSensitivityIntegrationSpec extends AbstractIntegratio
 
         execute "copy"
         then:
-        skippedTasks.empty
+        noneSkipped()
 
         assert file("src").renameTo(file("source"))
 
@@ -214,7 +214,7 @@ abstract class AbstractPathSensitivityIntegrationSpec extends AbstractIntegratio
 
         execute "copy"
         then:
-        skippedTasks.empty
+        noneSkipped()
 
         assert file("src/data/input.txt").renameTo(file("src/data/input-renamed.txt"))
 
@@ -222,6 +222,6 @@ abstract class AbstractPathSensitivityIntegrationSpec extends AbstractIntegratio
         cleanWorkspace()
         execute "copy"
         then:
-        skippedTasks.empty
+        noneSkipped()
     }
 }

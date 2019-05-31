@@ -192,7 +192,7 @@ class CodeNarcPluginVersionIntegrationTest extends MultiVersionIntegrationSpec {
 
         then:
         // TODO These should match
-        !!! nonSkippedTasks.contains(':codenarcMain')
+        !!! executedAndNotSkipped(':codenarcMain')
         !!! output.contains('CodeNarc Report')
         !!! output.contains('CodeNarc completed: (p1=0; p2=0; p3=0)')
     }

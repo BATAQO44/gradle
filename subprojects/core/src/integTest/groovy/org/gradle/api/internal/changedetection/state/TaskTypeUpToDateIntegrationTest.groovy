@@ -31,7 +31,7 @@ class TaskTypeUpToDateIntegrationTest extends AbstractIntegrationSpec {
         """
 
         when: succeeds "copy"
-        then: skippedTasks.empty
+        then: noneSkipped()
 
         file('build/input.txt').makeOlder()
 
@@ -54,7 +54,7 @@ class TaskTypeUpToDateIntegrationTest extends AbstractIntegrationSpec {
         buildFile << declareSimpleCopyTask(false)
 
         when: succeeds "copy"
-        then: skippedTasks.empty
+        then: noneSkipped()
 
         file("output.txt").makeOlder()
 
@@ -67,7 +67,7 @@ class TaskTypeUpToDateIntegrationTest extends AbstractIntegrationSpec {
         succeeds "copy"
 
         then:
-        skippedTasks.empty
+        noneSkipped()
 
         when:
         succeeds "copy"
@@ -88,7 +88,7 @@ class TaskTypeUpToDateIntegrationTest extends AbstractIntegrationSpec {
         """
 
         when: succeeds "copy"
-        then: skippedTasks.empty
+        then: noneSkipped()
 
         file('build/input.txt').makeOlder()
 
@@ -101,7 +101,7 @@ class TaskTypeUpToDateIntegrationTest extends AbstractIntegrationSpec {
         """
         succeeds "copy"
         then:
-        skippedTasks.empty
+        noneSkipped()
 
         when: succeeds "copy"
         then: skippedTasks == ([":copy"] as Set)

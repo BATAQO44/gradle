@@ -223,7 +223,7 @@ public class ThingTest {
         succeeds 'test', 'jacocoTestReport'
 
         then:
-        ':jacocoTestReport' in nonSkippedTasks
+        executedAndNotSkipped ':jacocoTestReport'
     }
 
     def "skips report task if all of the execution data files do not exist"() {
@@ -238,8 +238,8 @@ public class ThingTest {
         succeeds 'test', 'jacocoTestReport'
 
         then:
-        ':test' in nonSkippedTasks
-        ':jacocoTestReport' in skippedTasks
+        executedAndNotSkipped ':test'
+        skipped ':jacocoTestReport'
     }
 
     def "fails report task if only some of the execution data files do not exist"() {

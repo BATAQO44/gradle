@@ -1091,12 +1091,12 @@ task generate(type: TransformerTask) {
         when:
         succeeds "customTask"
         then:
-        skippedTasks.empty
+        noneSkipped()
 
         when:
         succeeds "customTask", "--info"
         then:
-        skippedTasks.empty
+        noneSkipped()
         output.contains "The type of task ':customTask' was loaded with an unknown classloader (class 'CustomTask_Decorated')."
     }
 
@@ -1138,12 +1138,12 @@ task generate(type: TransformerTask) {
         when:
         succeeds "customTask"
         then:
-        skippedTasks.empty
+        noneSkipped()
 
         when:
         succeeds "customTask", "--info"
         then:
-        skippedTasks.empty
+        noneSkipped()
         output.contains "Additional action for task ':customTask': was loaded with an unknown classloader (class 'CustomTaskAction')."
     }
 

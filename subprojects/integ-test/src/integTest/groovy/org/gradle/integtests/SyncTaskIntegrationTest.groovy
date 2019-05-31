@@ -155,7 +155,7 @@ class SyncTaskIntegrationTest extends AbstractIntegrationSpec {
 
         then:
         file('dest').allDescendants() == ['not-preserved.txt', 'preserved.txt'] as Set
-        skippedTasks.empty
+        noneSkipped()
 
         when:
         file('dest/preserved.txt').text = 'Changed!'
@@ -169,7 +169,7 @@ class SyncTaskIntegrationTest extends AbstractIntegrationSpec {
         run 'sync'
 
         then:
-        skippedTasks.empty
+        noneSkipped()
     }
 
     @NotYetImplemented
@@ -189,14 +189,14 @@ class SyncTaskIntegrationTest extends AbstractIntegrationSpec {
         run 'sync'
 
         then:
-        skippedTasks.empty
+        noneSkipped()
 
         when:
         file('dest/new-file.txt').text = 'Created!'
         run 'sync'
 
         then:
-        skippedTasks.empty
+        noneSkipped()
     }
 
     @NotYetImplemented
@@ -221,7 +221,7 @@ class SyncTaskIntegrationTest extends AbstractIntegrationSpec {
         run 'sync'
 
         then:
-        skippedTasks.empty
+        noneSkipped()
         file('dest/preserved').exists()
 
         when:
@@ -234,7 +234,7 @@ class SyncTaskIntegrationTest extends AbstractIntegrationSpec {
         run 'sync'
 
         then:
-        skippedTasks.empty
+        noneSkipped()
         !file('dest/preserved').exists()
     }
 

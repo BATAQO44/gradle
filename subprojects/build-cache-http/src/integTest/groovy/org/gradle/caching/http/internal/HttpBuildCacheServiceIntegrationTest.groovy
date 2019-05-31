@@ -56,7 +56,7 @@ class HttpBuildCacheServiceIntegrationTest extends AbstractIntegrationSpec imple
         when:
         withBuildCache().run "jar"
         then:
-        skippedTasks.empty
+        noneSkipped()
 
         expect:
         withBuildCache().run "clean"
@@ -165,7 +165,7 @@ class HttpBuildCacheServiceIntegrationTest extends AbstractIntegrationSpec imple
         when:
         withBuildCache().run "jar"
         then:
-        skippedTasks.empty
+        noneSkipped()
         httpBuildCacheServer.authenticationAttempts == ['Basic'] as Set
 
         expect:
@@ -185,7 +185,7 @@ class HttpBuildCacheServiceIntegrationTest extends AbstractIntegrationSpec imple
         when:
         withBuildCache().run "jar"
         then:
-        skippedTasks.empty
+        noneSkipped()
         httpBuildCacheServer.authenticationAttempts == ['Basic'] as Set
 
         expect:
@@ -215,7 +215,7 @@ class HttpBuildCacheServiceIntegrationTest extends AbstractIntegrationSpec imple
         when:
         withBuildCache().run "jar"
         then:
-        skippedTasks.empty
+        noneSkipped()
         httpBuildCacheServer.authenticationAttempts == ['Basic'] as Set
     }
 
@@ -250,7 +250,7 @@ class HttpBuildCacheServiceIntegrationTest extends AbstractIntegrationSpec imple
         withBuildCache().run "jar"
 
         then:
-        skippedTasks.empty
+        noneSkipped()
         output.contains('PKIX path building failed: ')
     }
 

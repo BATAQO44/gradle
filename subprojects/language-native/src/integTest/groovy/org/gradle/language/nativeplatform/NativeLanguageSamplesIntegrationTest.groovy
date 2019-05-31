@@ -58,8 +58,7 @@ class NativeLanguageSamplesIntegrationTest extends AbstractInstalledToolChainInt
         run "installMainExecutable"
 
         then:
-        nonSkippedTasks.count { it.startsWith(":assembleMainExecutable") } == 1
-        executedAndNotSkipped ":compileMainExecutableMainC", ":linkMainExecutable", ":mainExecutable"
+        executedAndNotSkipped ":compileMainExecutableMainC", ":linkMainExecutable", ":assembleMainExecutable", ":mainExecutable"
 
         and:
         installation(assembler.dir.file("build/install/main")).exec().out == "5 + 7 = 12\n"
