@@ -136,7 +136,7 @@ class CachedGroovyCompileIntegrationTest extends AbstractCachedCompileIntegratio
         withBuildCache().run ':compileGroovy'
 
         then:
-        skipped([':compileJava', ':compileGroovy'])
+        skipped(':compileJava', ':compileGroovy')
 
         when:
         file('src/main/java/RequiredByGroovy.java').text = """

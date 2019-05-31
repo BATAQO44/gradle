@@ -311,7 +311,7 @@ class BuildDashboardPluginIntegrationTest extends WellBehavedPluginTest {
         hasUnavailableReport(':test', 'junitXml')
 
         when:
-        run('buildDashboard')
+        run('test')
         executedAndNotSkipped(':buildDashboard')
 
         then:

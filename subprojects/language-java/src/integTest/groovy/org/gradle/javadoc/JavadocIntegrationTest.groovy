@@ -160,7 +160,7 @@ Joe!""")
         when:
         run "javadoc"
         then:
-        executedAndNotSkipped(":javadoc")
+        skipped(":javadoc")
 
         when:
         buildFile.text = """

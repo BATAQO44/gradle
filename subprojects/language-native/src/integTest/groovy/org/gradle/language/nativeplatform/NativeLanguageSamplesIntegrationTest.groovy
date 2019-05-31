@@ -58,7 +58,7 @@ class NativeLanguageSamplesIntegrationTest extends AbstractInstalledToolChainInt
         run "installMainExecutable"
 
         then:
-        executedAndNotSkipped ":compileMainExecutableMainC", ":linkMainExecutable", ":assembleMainExecutable", ":mainExecutable"
+        executedAndNotSkipped ":compileMainExecutableMainC", ":linkMainExecutable", ":mainExecutable"
 
         and:
         installation(assembler.dir.file("build/install/main")).exec().out == "5 + 7 = 12\n"
