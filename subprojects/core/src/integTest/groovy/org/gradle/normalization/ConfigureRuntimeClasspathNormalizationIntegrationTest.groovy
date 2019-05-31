@@ -83,7 +83,7 @@ class ConfigureRuntimeClasspathNormalizationIntegrationTest extends AbstractInte
         when:
         succeeds(*allProjects*.customTask)
         then:
-        executedAndNotSkipped(allProjects*.customTask)
+        executedAndNotSkipped(*allProjects*.customTask)
 
         when:
         projectWithIgnores.ignoredResourceInJar.changeContents()
