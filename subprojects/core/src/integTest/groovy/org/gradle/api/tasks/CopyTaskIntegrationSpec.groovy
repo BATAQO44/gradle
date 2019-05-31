@@ -1175,7 +1175,7 @@ class CopyTaskIntegrationSpec extends AbstractIntegrationSpec {
         run "copy"
         then:
         // TODO Task should not be skipped
-        !!! noneSkipped()
+        !!! skipped(":copy")
     }
 
     @ToBeImplemented
@@ -1202,7 +1202,7 @@ class CopyTaskIntegrationSpec extends AbstractIntegrationSpec {
         run "copy"
         then:
         // TODO Task should not be skipped
-        !!! noneSkipped()
+        !!! skipped(":copy")
     }
 
     @ToBeImplemented
@@ -1229,7 +1229,7 @@ class CopyTaskIntegrationSpec extends AbstractIntegrationSpec {
         run "copy"
         then:
         // TODO Task should not be skipped
-        !!! noneSkipped()
+        !!! skipped(":copy")
     }
 
     @Issue("https://issues.gradle.org/browse/GRADLE-3554")
